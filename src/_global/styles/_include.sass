@@ -1,0 +1,162 @@
+// 共通変数や関数群
+
+@use './_flex'
+@forward './_flex'
+@use './_grid'
+@forward './_grid'
+
+// 色やサイズの変数
+$wrapper: 1000
+$hover: '&:is(:active, :hover, .active)'
+$time: .3s
+$cubic: cubic-bezier(1, 0, 0, 1)
+$size_tablet: 1000px
+$size_sp: 767px
+
+$black: #000
+$white: #fff
+$font: #333
+$blue: #06f
+$yellow: #ff6
+$border: rgba($white, .3)
+
+$circles_duration: 3.6s
+
+// transition（$delay に inherit を定義可能）
+// - $property: プロパティ名
+// - $duration: 再生時間
+// - $delay = 0s: 遅延時間
+// - $timing = linear: イージング
+=transition($property: all, $duration: $time, $delay: 0s, $timing: ease)
+	transition-property: #{$property}
+	transition-duration: $duration
+	transition-delay: $delay
+	transition-timing-function: $timing
+
+// animation（$delay に inherit を定義可能）
+// - $name: アニメーション名
+// - $duration: 再生時間
+// - $delay = 0s: 遅延時間
+// - $count = 1: 繰り返し回数
+// - $timing = linear: イージング
+// - $fillmode = forwards: アニメーション終了後の状態
+=animation($name, $duration: $time, $delay: 0s, $count: 1, $timing: linear, $fillmode: forwards)
+	animation-name: $name
+	animation-duration: $duration
+	animation-delay: $delay
+	animation-iteration-count: $count
+	animation-timing-function: $timing
+	animation-fill-mode: $fillmode
+
+// テキストが長い場合の ...（1 行用）
+=ellipsis()
+	overflow: hidden
+	text-overflow: ellipsis
+	white-space: nowrap
+
+// テキストが長い場合の ...（複数行用）
+=clamp($line: 2)
+	display: -webkit-box
+	overflow: hidden
+	-webkit-line-clamp: $line
+	-webkit-box-orient: vertical
+
+// 縦書き
+=vertical()
+	-webkit-writing-mode: vertical-rl
+	-ms-writing-mode: tb-rl
+	writing-mode: vertical-rl
+
+// 横書き（縦書きをレスポンシブで横書きにしたい場合など）
+=horizontal()
+	-webkit-writing-mode: horizontal-tb
+	-ms-writing-mode: horizontal-tb
+	writing-mode: horizontal-tb
+
+// スムーススクロール
+=sp_scroll()
+	overflow: scroll
+	-webkit-overflow-scrolling: touch
+	overflow-scrolling: touch
+
+// placeholder の色変更
+// - $color: 色
+=placeholder($color)
+	&::-webkit-input-placeholder
+		color: $color
+	&:-ms-input-placeholder
+		color: $color
+	&::-moz-placeholder
+		color: $color
+
+// fade in / out の準備
+// - $mode = in: モード（in / out）
+// - $time = .5s: 再生時間（秒）
+=fade($mode: in, $time: .5s)
+	@if $mode == in
+		display: none
+		opacity: 0
+	@else if $mode == out
+		opacity: 1
+	transition: opacity $time, display $time
+	transition-behavior: allow-discrete
+
+// fade in / out の実行
+// - $mode = in: モード（in / out）
+// - $display = block: 対象要素の display 値
+=fade_exec($mode: in, $display: block)
+	@if $mode == in
+		display: #{$display}
+		opacity: 1
+
+		@starting-style
+			opacity: 0
+	@else if $mode == out
+		display: none
+		opacity: 0
+
+		@starting-style
+			opacity: 1
+
+// 三角の生成
+// - $size = 6: サイズ（px 数値）
+// - $color = $blue: 色
+=arrow($size: 6, $color: $blue)
+	content: ''
+	width: #{$size}px
+	height: #{$size}px
+	display: block
+	position: absolute
+	background-color: $color
+	clip-path: polygon(0 0, 100% 50%, 0 100%)
+
+// 三角の生成（丸い背景付き）
+// - $baseWidth = 8: 背景のサイズ（px 数値）
+// - $baseTop = 7: 背景の top（px 数値）
+// - $triangleWidth = 4: 三角のサイズ（px 数値）
+// - $triangleTop = 9: 三角の top（px 数値）
+// - $triangleRight = 1: 三角の right（px 数値）
+=circle_arrow($baseWidth: 8, $baseTop: 7, $triangleWidth: 4, $triangleTop: 9, $triangleRight: 1)
+	&::before, &::after
+		margin: auto 0
+		position: absolute
+	&::before
+		content: ''
+		width: #{$baseWidth}px
+		height: #{$baseWidth}px
+		top: #{$baseTop}px
+		right: 0
+		background-color: $blue
+		border-radius: 100%
+	&::after
+		+arrow($triangleWidth, $white)
+		top: #{$triangleTop}px
+		right: #{$triangleRight}px
+
+// PC / Tablet / SP のサイズ計算
+@function pc($size)
+	@return calc(100vw / #{$wrapper} * #{$size})
+@function tb($size)
+	@return calc(100vw / 768 * #{$size})
+@function sp($size)
+	@return calc(100vw / 375 * #{$size})

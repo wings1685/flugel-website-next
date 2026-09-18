@@ -1,0 +1,70 @@
+// flex 設定用
+
+@use "sass:map"
+
+// flex 用プロパティ（ショートハンドでも可能）
+$flex_map: (
+	// justify-content / align-items
+	center: center,
+	flex-start: flex-start,
+	flex-end: flex-end,
+	space-between: space-between,
+	space-around: space-around,
+	space-evenly: space-evenly,
+	// justify-content / align-items（ショートハンド）
+	c: center,
+	s: flex-start,
+	e: flex-end,
+	b: space-between,
+	a: space-around,
+	ev: space-evenly,
+	// flex-wrap
+	nowrap: nowrap,
+	wrap: wrap,
+	wrap-reverse: wrap-reverse,
+	// flex-wrap（ショートハンド）
+	n: nowrap,
+	w: wrap,
+	wr: wrap-reverse,
+	// flex-direction
+	row: row,
+	row-reverse: row-reverse,
+	column: column,
+	column-reverse: column-reverse,
+	// flex-direction（ショートハンド）
+	r: row,
+	rr: row-reverse,
+	cl: column,
+	clr: column-reverse,
+)
+
+// flex の一括設定
+// - $horizontal = center: justify-content
+// - $vertical = center: align-items
+// - $wrap = nowrap: flex-wrap
+// - $direction = row: flex-direction
+// - $gap = null: gap
+// - $inline = false: inline-flex
+=flex($horizontal: center, $vertical: center, $gap: null, $wrap: nowrap, $direction: row, $inline: false)
+	@if $inline
+		display: inline-flex
+	@else
+		display: flex
+
+	$justify_content: map.get($flex_map, $horizontal)
+	@if $justify_content
+		justify-content: $justify_content
+
+	$align_items: map.get($flex_map, $vertical)
+	@if $align_items
+		align-items: $align_items
+
+	$flex_wrap: map.get($flex_map, $wrap)
+	@if $flex_wrap
+		flex-wrap: $flex_wrap
+
+	$flex_direction: map.get($flex_map, $direction)
+	@if $flex_direction
+		flex-direction: $flex_direction
+	@if $gap != null
+		gap: $gap

@@ -1,0 +1,11 @@
+@use "../../../_global/styles/_include.sass" as *
+
+ul.horizontal_list
+	margin-top: 1em
+	+flex(s, s, 10px, w)
+
+	& > li
+		padding: 2px 8px
+		color: $white
+		background-color: rgba($black, .9)
+		border-radius: 5px

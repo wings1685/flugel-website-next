@@ -1,0 +1,36 @@
+@use "../../../_global/styles/_include.sass" as *
+
+.page_title
+	width: calc(100% + 80px)
+	margin: 0 -40px 40px
+	padding: 10px 40px
+	font-size: 2.6rem
+	background-color: rgba($blue, .2)
+	box-shadow: inset 0 0 10px rgba($black, 0.2)
+
+	i
+		margin-right: 20px
+
+// --------------------------------------------------
+// tablet
+@media screen and (max-width: $size_tablet)
+	.page_title
+		width: calc(100% + 60px)
+		margin: 0 -30px 30px
+		padding: 10px 30px
+		font-size: tb(22)
+
+		i
+			margin-right: 15px
+
+// --------------------------------------------------
+// mobile
+@media screen and (max-width: $size_sp)
+	.page_title
+		width: calc(100% + 40px)
+		margin: 0 -20px 20px
+		padding: 10px 20px
+		font-size: sp(18)
+
+		i
+			margin-right: 10px

@@ -1,0 +1,57 @@
+@use "../../../_global/styles/_include.sass" as *
+
+.glass
+	padding: 40px
+	position: relative
+	z-index: 1
+	color: $white
+	background-image: linear-gradient(135deg, rgba($white, .25) 0, rgba(0, 174, 239, .15) 15%, rgba($white, 0) 70%)
+	backdrop-filter: blur(14px) saturate(1.2) brightness(0.75)
+	border-radius: 20px
+	box-shadow: 3px 3px 12px rgba($black, .35)
+	text-shadow: 1px 1px 1px rgba($black, .6)
+
+	&::before
+		content: ''
+		position: absolute
+		inset: 0
+		z-index: -1
+		opacity: .6
+		border-radius: 20px
+		border: 1px solid transparent
+		background: linear-gradient(135deg,rgba($white, .8) 0%, rgba($white, 0) 40%, rgb($font, .2) 100%) border-box border-box
+		-webkit-mask: linear-gradient($white 0 0) padding-box, linear-gradient($white 0 0) border-box
+		-webkit-mask-composite: destination-out
+		mask: linear-gradient($white 0 0) padding-box, linear-gradient($white 0 0) border-box
+		mask-composite: exclude
+		+transition(opacity)
+	&.mini
+		padding: 10px 20px
+	&.is_dark
+		background-color: rgba($black, .6)
+:is(a.glass, .glass.btn_nav)
+	+flex()
+	+transition(background-color)
+
+	.icon
+		margin-left: 10px
+	#{$hover}
+		background-color: rgba($blue, .6)
+button.glass
+	padding: 0
+	border: 0
+
+// --------------------------------------------------
+// tablet
+@media screen and (max-width: $size_tablet)
+	.glass
+		padding: 30px
+
+// --------------------------------------------------
+// mobile
+@media screen and (max-width: $size_sp)
+	.glass
+		padding: 20px
+
+		&.mini
+			padding: 7px 14px

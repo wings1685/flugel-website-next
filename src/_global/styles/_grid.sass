@@ -1,0 +1,73 @@
+// grid 設定用
+
+@use "sass:map"
+@use "sass:meta"
+
+// grid 用プロパティ（ショートハンドでも可能）
+$grid_map: (
+	// justify-items / align-items
+	center: center,
+	start: start,
+	end: end,
+	stretch: stretch,
+	// justify-items / align-items（ショートハンド）
+	c: center,
+	s: start,
+	e: end,
+	str: stretch,
+	// grid-template-columns / grid-template-rows
+	none: none,
+	subgrid: subgrid,
+	masonry: masonry,
+	inherit: inherit,
+	initial: initial,
+	revert: revert,
+	revert-layer: revert-layer,
+	unset: unset,
+	// grid-template-columns / grid-template-rows（ショートハンド）
+	n: none,
+	sub: subgrid,
+	m: masonry,
+	inh: inherit,
+	i: initial,
+	r: revert,
+	rl: revert-layer,
+	u: unset,
+)
+
+// grid の一括設定（数値なら repeat(n, 1fr) 変換）
+// - $cols = auto: 列数またはテンプレート
+// - $rows = auto: 行数またはテンプレート
+// - $gap = null: gap
+// - $inline = false: inline-grid
+// - $place = null: place-items（align + justify のまとめ）
+=grid($cols: none, $rows: none, $horizontal: center, $vertical: center, $gap: null, $inline: false)
+	@if $inline
+		display: inline-grid
+	@else
+		display: grid
+
+	@if meta.type-of($cols) == number
+		grid-template-columns: repeat($cols, 1fr)
+	@else
+		$grid_template_columns: map.get($grid_map, $cols)
+		@if $grid_template_columns
+			grid-template-columns: $grid_template_columns
+
+	@if meta.type-of($rows) == number
+		grid-template-rows: repeat($rows, auto)
+	@else
+		$grid_template_rows: map.get($grid_map, $rows)
+		@if $grid_template_rows
+			grid-template-rows: $grid_template_rows
+
+	$justify_items: map.get($grid_map, $horizontal)
+	@if $justify_items
+		justify-items: $justify_items
+
+	$align_items: map.get($grid_map, $vertical)
+	@if $align_items
+		align-items: $align_items
+
+	@if $gap != null
+		gap: $gap

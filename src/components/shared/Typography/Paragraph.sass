@@ -1,0 +1,17 @@
+@use "../../../_global/styles/_include.sass" as *
+
+.paragraph
+	line-height: 1.8
+	letter-spacing: 0.1em
+
+	&+.paragraph
+		margin-top: 1em
+	p
+		display: inline
+
+// --------------------------------------------------
+// mobile
+@media screen and (max-width: $size_sp)
+	.paragraph
+		line-height: 1.6
+		letter-spacing: 0

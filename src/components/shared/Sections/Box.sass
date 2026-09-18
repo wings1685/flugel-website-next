@@ -1,0 +1,12 @@
+@use "../../../_global/styles/_include.sass" as *
+
+.box
+	&+.box
+		margin-top: 60px
+
+// --------------------------------------------------
+// mobile
+@media screen and (max-width: $size_sp)
+	.box
+		&+.box
+			margin-top: 40px

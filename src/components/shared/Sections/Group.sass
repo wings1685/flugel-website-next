@@ -1,0 +1,34 @@
+@use "../../../_global/styles/_include.sass" as *
+
+.group
+	display: flex
+	gap: 30px
+
+	&.direction_left
+		justify-content: flex-start
+	&.direction_center
+		justify-content: center
+	&.direction_right
+		justify-content: flex-end
+	&.direction_justify
+		justify-content: space-between
+	&.margin_size_small
+		margin-top: 20px
+	&.margin_size_medium
+		margin-top: 40px
+	&.margin_size_large
+		margin-top: 60px
+	&.margin_size_none
+		margin-top: 0
+
+// --------------------------------------------------
+// tablet
+@media screen and (max-width: $size_tablet)
+	.group
+		gap: tb(30)
+
+// --------------------------------------------------
+// mobile
+@media screen and (max-width: $size_sp)
+	.group
+		gap: sp(20)

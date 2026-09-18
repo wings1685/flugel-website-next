@@ -1,0 +1,12 @@
+@use "../../../_global/styles/_include.sass" as *
+
+.section
+	&+.section
+		margin-top: 80px
+
+// --------------------------------------------------
+// tablet
+@media screen and (max-width: $size_tablet)
+	.section
+		&+.section
+			margin-top: 30px

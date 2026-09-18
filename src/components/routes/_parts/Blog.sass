@@ -1,0 +1,34 @@
+@use "../../../_global/styles/_include.sass" as *
+
+#blog_entries
+	article
+		display: grid
+		justify-items: start
+		gap: 10px 0
+
+		a.glass.mini
+			p
+				+ellipsis()
+		.published
+			margin-left: auto
+			display: block
+			line-height: 40px
+			font-size: 1.4rem
+		.summary
+			width: 100%
+			font-size: 1.4rem
+			+clamp()
+
+// --------------------------------------------------
+// mobile
+@media screen and (max-width: $size_sp)
+	#blog_entries
+		article
+			a.glass.mini
+				width: 100%
+				justify-content: flex-start
+
+				i
+					margin-left: auto
+			.published
+				margin-top: 10px
