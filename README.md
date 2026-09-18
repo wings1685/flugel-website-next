@@ -19,7 +19,7 @@
 
 - SolidStart から Next.js への翻訳（Solid JSX → React JSX、Signal → State）
 - SSR 安全なグローバルストア機構を Legendapp State に適用
-- Meta 情報用共通コンポーネントを共通関数へ変更
+- Meta 情報用共通コンポーネントから共通関数へ変更
 - Shiki コードの色付け実行を非同期コンポーネントでビルド時に生成、クライアント時の実行なし
 
 ## Replaced Festival Repositories
@@ -27,6 +27,9 @@
 - [SolidStart 版](https://github.com/wings1685/flugel-website)
 - [SvelteKit 版](https://github.com/wings1685/flugel-website-sveltekit)
 - [Qwik 版](https://github.com/wings1685/flugel-website-qwik)
+- [Nuxt 版](https://github.com/wings1685/flugel-website-nuxt)
+- [Astro + Solid / Svelte / Vue 版](https://github.com/wings1685/flugel-website-astro)
+- [Astro + React 版](https://github.com/wings1685/flugel-website-astro-react)
 
 ## Related Articles
 
