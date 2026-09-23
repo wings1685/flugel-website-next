@@ -14,15 +14,7 @@ export default function Bg() {
 	const animationDelay = useRef(0);
 	const [ nextMonth, setNextMonth ] = useState<Months>();
 	const { selectedMonth$ } = useStore('selectedMonth');
-
 	const elBg = useRef<HTMLImageElement>(null);
-	const getSrcset = (month?: Months) => {
-		if (typeof window !== 'undefined' && month) {
-			return window.innerWidth <= 768 ? `/images/bg/${ month }_sp.webp` : `/images/bg/${ month }.webp`;
-		} else {
-			return `/images/bg/${ month }.webp`;
-		}
-	};
 
 	useObserve(() => {
 		const next = selectedMonth$.get();
@@ -55,9 +47,13 @@ export default function Bg() {
 
 	return (
 		<div id="bg">
-			<Image ref={ elBg } alt="" src={ getSrcset(currentMonth) } width={ 0 } height={ 0 } />
+			<Image ref={ elBg } alt="" src={ `/images/bg/${ currentMonth }.webp` } width={ 0 } height={ 0 } className="pc" />
+			<Image alt="" src={ `/images/bg/${ currentMonth }_sp.webp` } width={ 0 } height={ 0 } className="sp" />
 			{selectedMonth$.get() && (
-				<Image id="selected_bg" src={ getSrcset(selectedMonth$.get()) } alt="" width={ 0 } height={ 0 } />
+				<div id="selected_bg">
+					<Image src={ `/images/bg/${ selectedMonth$.get() }.webp` } alt="" width={ 0 } height={ 0 } className="pc" />
+					<Image src={ `/images/bg/${ selectedMonth$.get() }_sp.webp` } alt="" width={ 0 } height={ 0 } className="sp" />
+				</div>
 			)}
 		</div>
 	)

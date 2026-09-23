@@ -36,7 +36,7 @@ export const stacks = [
 	'Git',
 ] as const;
 
-export const sites = [{
+export const experiments = [{
 	description: "ページ数 3 / コンポーネント数 33 のサイトを同一表示・機能で各フレームワークに 3 日間かけてリプレイスしました。\n対象フレームワークは SolidStart / SvelteKit / Qwik City / Next.js / Nuxt / Astro + Solid / Astro + Svelte / Astro + React / Astro + Vue の 9 種類です。",
 	stacks: [
 		'SolidStart (SSG)',
@@ -101,7 +101,9 @@ export const sites = [{
 		'Vue',
 		'TypeScript',
 	]
-}, {
+}] as const;
+
+export const sites = [{
 	description: "質問に対する回答を押していく診断サイトの構築を行いました。\n似た診断サイトを昨年は SvelteKit で構築しましたが、今年は SolidStart で構築しました。",
 	stacks: [
 		'SolidStart (SSG)',

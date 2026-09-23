@@ -1,12 +1,10 @@
-import { Archives, Environment } from "./_parts";
-import { buildMeta } from "@/_global/lib/utils";
-
-export const metadata = buildMeta({ title: 'Archives' });
+import { Archives, Experiments, Environment } from "./_parts";
 
 export default function Page() {
 	return (
 		<main>
 			<Environment />
+			<Experiments />
 			<Archives />
 		</main>
 	)

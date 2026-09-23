@@ -1,9 +1,6 @@
-import { buildMeta } from "@/_global/lib/utils";
 import { DeepGuard, Exclude, Props } from "./_parts";
 import { Box, Glass } from "@/components/shared/Sections";
 import { PageTitle, Paragraph } from "@/components/shared/Typography";
-
-export const metadata = buildMeta({ title: 'Types' });
 
 export default function Page() {
 	return (

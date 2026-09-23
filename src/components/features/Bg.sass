@@ -14,6 +14,8 @@
 		height: 100%
 		object-fit: cover
 		animation-duration: .7s
+	.sp
+		display: none
 @keyframes selected_bg
 	0%
 		opacity: 0
@@ -26,3 +28,12 @@
 	inset: 0
 	z-index: 1
 	+animation(selected_bg, .7s, inherit)
+
+// --------------------------------------------------
+// vertical
+@media screen and (max-width: 768px)
+	#bg
+		.pc
+			display: none
+		.sp
+			display: block
