@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-page-custom-font */
-import { buildMeta } from "@/_global/lib/utils";
 import { Footer, Header, Nav } from "@/components/shared/Sections";
 import { Bg } from "@/components/features";
 
@@ -7,8 +6,6 @@ import type { ReactNode } from "react";
 import type { DeepGuard } from "@/_global/types/types";
 
 import "@/_global/styles/global.sass";
-
-export const metadata = buildMeta({ title: 'Home' });
 
 type Props = {
 	children: ReactNode;

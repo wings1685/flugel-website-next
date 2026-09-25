@@ -1,6 +1,6 @@
 import { Glass, VerticalList } from "@/components/shared/Sections";
 import { PageTitle } from "@/components/shared/Typography";
-import { Entries } from "@/components/features";
+import { Entries } from "../../features";
 import { Icon } from "@/components/shared/Utils";
 import "./Blog.sass";
 

@@ -1,7 +1,7 @@
-import { buildMeta } from "@/_global/lib/utils";
+import { buildSiteMeta } from "@/components/routes/_models/siteMeta";
 import Page from "@/components/routes/types/Page";
 
-export const metadata = buildMeta({ title: 'Types' });
+export const metadata = buildSiteMeta({ dir: '/types' });
 
 export default function PageTypes() {
 	return <Page />;

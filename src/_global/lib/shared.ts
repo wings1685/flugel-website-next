@@ -1,6 +1,4 @@
 export const flugel = 'Flügel';
-export const siteTitle = `${flugel}.biz`;
-export const siteDescription = `${flugel}.biz は、京都市内のウェブサイト制作・ウェブシステム開発を行うフリーランスです。`;
 
 export const monthData = {
 	jan: '伏見稲荷大社',

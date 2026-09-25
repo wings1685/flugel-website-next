@@ -1,10 +1,7 @@
-import { buildMeta } from "@/_global/lib/utils";
 import { Glass, Group } from "@/components/shared/Sections";
 import { PageTitle, Paragraph } from "@/components/shared/Typography";
-import { GlassButton } from "../features";
-import { Icon } from "../shared/Utils";
-
-export const metadata = buildMeta({ title: 'Error' });
+import { GlassButton } from "@/components/features";
+import { Icon } from "@/components/shared/Utils";
 
 export default function Page() {
 	return (
