@@ -15,6 +15,7 @@ const globData: YamlFiles = Object.fromEntries(metaPaths.map(metaPath => {
 
 	return [ metaPath, yamlData ];
 }));
+const pageDirs = await glob(`${rootDir}**/Page.tsx`);
 export const buildSiteMeta = (props?: DeepGuard<MetaProps>) => {
-	return buildMeta({ ...props ?? {}, globData, rootDir })
+	return buildMeta({ ...props ?? {}, rootDir, globData, pageDirs })
 };
