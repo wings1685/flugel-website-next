@@ -1,7 +1,6 @@
 import * as v from "valibot";
 import type { DeepGuard } from "../types/types";
-import type { Metadata } from "next/types";
-import type { OpenGraph } from "next/dist/lib/metadata/types/opengraph-types";
+import type { Metadata } from "next";
 
 const MetaSchema = v.object({
 	title: v.string(),
@@ -33,11 +32,10 @@ const separator = ' | ';
 const convertDirectoryArray = (dir: string) => {
 	const dirs = dir.split('/');
 
-	return dirs.map(path => path ? `${path}/` : path);
+	return dirs.filter((path, index) => path || index === 0).map(path => path ? `${path}/` : path);
 };
 const getPaths = (pageDirs: DeepGuard<Props['pageDirs']>, rootDir: string) => pageDirs.map(path => {
-	const regex = new RegExp(rootDir, 'g');
-	const dir = path.replace(regex, './');
+	const dir = path.replace(rootDir, './');
 
 	return `/${dir.split('/').slice(1, -1).join('/')}`;
 });
@@ -49,12 +47,13 @@ const getAvailableDirs = (paths: string[], dir: string) => {
 };
 
 export const buildMeta = (props: DeepGuard<Props>): Metadata => {
-	const { dir = '', meta, rootDir, globData, pageDirs } = props;
+	const { dir = '/', meta, rootDir, globData, pageDirs } = props;
 
 	const paths = getPaths(pageDirs, rootDir);
 	if (dir && !paths.includes(dir)) {
 		const availableDirs = getAvailableDirs(paths, dir);
-		console.error('Undefined directory, available directories: ', availableDirs);
+		console.error('Available directories: ', availableDirs);
+		throw new Error('Undefined directory');
 	}
 	const metaData: MetaInfo = { titles: [], description: '', ogImage: '', siteTitle: '' };
 
@@ -67,12 +66,14 @@ export const buildMeta = (props: DeepGuard<Props>): Metadata => {
 
 		if (data.title && canOverrideTitle) metaData.titles = [ data.title, ...metaData.titles];
 		if (data.title && !metaData.siteTitle) metaData.siteTitle = data.title;
-		if (data.description) metaData.description = data.description;
-		if (data.ogImage) metaData.ogImage = data.ogImage;
+		if (data.description !== undefined) metaData.description = data.description;
+		if (data.ogImage !== undefined) metaData.ogImage = data.ogImage;
 	};
 
+	let builtPath = '';
 	Object.values(pagePaths).forEach(path => {
-		const yamlPath = `${rootDir}${path}_data/meta.yaml`;
+		builtPath += path;
+		const yamlPath = `${rootDir}${builtPath}_data/meta.yaml`;
 		if (!globPaths.includes(yamlPath)) return;
 
 		const data = globData[yamlPath];
@@ -84,18 +85,20 @@ export const buildMeta = (props: DeepGuard<Props>): Metadata => {
 	setMeta(meta);
 
 	const title = metaData.titles.join(separator);
-	const openGraph: OpenGraph = {
+	const socialMeta: Metadata['openGraph'] = {
 		title: title,
 		description: metaData.description,
-		siteName: metaData.siteTitle,
-		images: metaData.ogImage ?? undefined,
+		images: metaData.ogImage || undefined,
 	};
 	const data: Metadata = {
 		title: title,
 		description: metaData.description,
-		openGraph,
+		openGraph: {
+			...socialMeta,
+			siteName: metaData.siteTitle,
+		},
 		twitter: {
-			...openGraph,
+			...socialMeta,
 			card: 'summary_large_image',
 		},
 	};

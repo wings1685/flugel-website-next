@@ -20,7 +20,7 @@
 
 - SolidStart から Next.js への翻訳（Solid JSX → React JSX、Signal → State）
 - SSR 安全なグローバルストア機構を Legendapp State に適用
-- Meta 情報用共通コンポーネントから共通関数へ変更
+- Meta 生成機構を Next.js に合わせた上で適用（Solid JSX → React JSX、SiteMeta コンポーネント → siteMeta ファイル、MetaTags コンポーネント → export const metadata）
 - Shiki コードの色付け実行を非同期コンポーネントでビルド時に生成、クライアント時の実行なし
 
 ## Replaced Festival Repositories
@@ -36,6 +36,7 @@
 
 - [同一サイトの 9 フレームワークパターンでのリプレイス祭](https://wings.hatenablog.com/entry/replaceFestival)
 - [【極限編】同一 Astro 上で Solid / Svelte / Vue / React それぞれの処理速度を計測してみた（Qwik は無し）](https://wings.hatenablog.com/entry/benchmarkExtreme)
+- [Meta 生成機構祭](https://wings.hatenablog.com/entry/metaFestival)
 
 ## Folder Map
 
