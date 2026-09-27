@@ -68,7 +68,7 @@ export const experiments = [{
 		'TypeScript',
 	]
 }, {
-	description: "Solid / Svelte / Vue / React において、SSR 環境でも状態汚染の無いグローバルストア機構を、寝床で思いついた翌日に開発しました。\nContext のように包む必要がなく、型推論も効き、Astro でもメタフレームワークでも動作します。",
+	description: "Solid / Svelte / Vue / React において、SSR 環境でも状態汚染の無いグローバルストア機構を、寝床で思いついた翌日に実装しました。\nContext のように包む必要がなく、型推論も効き、Astro でもメタフレームワークでも動作します。",
 	stacks: [
 		'SolidStart (SSG)',
 		'SvelteKit (SSG)',
@@ -87,7 +87,7 @@ export const experiments = [{
 		'TypeScript',
 	]
 }, {
-	description: "Solid / Svelte / Qwik / Vue / React において、フォームライブラリを使わず、フレームワークの標準機能のみで同一機能を供給する機構を 7 日間かけて考案・開発しました。\n各フレームワークの特性から、関数注入型とコンポーネント型とし、Astro でもメタフレームワークでも動作します。",
+	description: "Solid / Svelte / Qwik / Vue / React において、フォームライブラリを使わず、フレームワークの標準機能のみで同一機能を供給する機構を 7 日間かけて考案・実装しました。\n各フレームワークの特性から、関数注入型とコンポーネント型とし、Astro でもメタフレームワークでも動作します。",
 	stacks: [
 		'SolidStart (SSG)',
 		'SvelteKit (SSG)',
@@ -99,6 +99,25 @@ export const experiments = [{
 		'Svelte',
 		'React',
 		'Vue',
+		'TypeScript',
+	]
+}, {
+	description: "SolidStart / SvelteKit / Qwik / Astro / Nuxt / Next.js において、起点となるフォルダから階層を辿って Meta を生成する機構を考案・実装しました。\nそれぞれのフレームワークの特性に寄り添った方法で行っています。",
+	stacks: [
+		'SolidStart (SSG)',
+		'SvelteKit (SSG)',
+		'Qwik City (SSG)',
+		'Nuxt (SSG)',
+		'Next.js (SSG)',
+		'Astro (SSG)',
+		'TypeScript',
+	]
+}, {
+	description: "SolidStart / SvelteKit / Qwik において、Context の Getter / Setter 化を行いました\n取得と更新を単一方向にすることで、グローバルな状態管理においての安全性の向上に繋がっています",
+	stacks: [
+		'SolidStart (SSG)',
+		'SvelteKit (SSG)',
+		'Qwik City (SSG)',
 		'TypeScript',
 	]
 }] as const;
