@@ -9,6 +9,7 @@ export const environment = [
 ] as const;
 
 export const stacks = [
+	'Solid 2',
 	'SolidStart',
 	'SvelteKit',
 	'Astro',
@@ -70,6 +71,7 @@ export const experiments = [{
 }, {
 	description: "Solid / Svelte / Vue / React において、SSR 環境でも状態汚染の無いグローバルストア機構を、寝床で思いついた翌日に実装しました。\nContext のように包む必要がなく、型推論も効き、Astro でもメタフレームワークでも動作します。",
 	stacks: [
+		'Solid 2 (SSG)',
 		'SolidStart (SSG)',
 		'SvelteKit (SSG)',
 		'Nuxt (SSG)',
@@ -89,6 +91,7 @@ export const experiments = [{
 }, {
 	description: "Solid / Svelte / Qwik / Vue / React において、フォームライブラリを使わず、フレームワークの標準機能のみで同一機能を供給する機構を 7 日間かけて考案・実装しました。\n各フレームワークの特性から、関数注入型とコンポーネント型とし、Astro でもメタフレームワークでも動作します。",
 	stacks: [
+		'Solid 2 (SSG)',
 		'SolidStart (SSG)',
 		'SvelteKit (SSG)',
 		'Qwik City (SSG)',
@@ -102,8 +105,9 @@ export const experiments = [{
 		'TypeScript',
 	]
 }, {
-	description: "SolidStart / SvelteKit / Qwik / Astro / Nuxt / Next.js において、起点となるフォルダから階層を辿って Meta を生成する機構を考案・実装しました。\nそれぞれのフレームワークの特性に寄り添った方法で行っています。",
+	description: "Solid / SvelteKit / Qwik / Astro / Nuxt / Next.js において、起点となるフォルダから階層を辿って Meta を生成する機構を考案・実装しました。\nそれぞれのフレームワークの特性に寄り添った方法で行っています。",
 	stacks: [
+		'Solid 2 (SSG)',
 		'SolidStart (SSG)',
 		'SvelteKit (SSG)',
 		'Qwik City (SSG)',
@@ -113,8 +117,9 @@ export const experiments = [{
 		'TypeScript',
 	]
 }, {
-	description: "SolidStart / SvelteKit / Qwik において、Context の Getter / Setter 化を行いました\n取得と更新を単一方向にすることで、グローバルな状態管理においての安全性の向上に繋がっています",
+	description: "Solid / SvelteKit / Qwik において、Context の Getter / Setter 化を行いました\n取得と更新を単一方向にすることで、グローバルな状態管理においての安全性の向上に繋がっています",
 	stacks: [
+		'Solid 2 (SSG)',
 		'SolidStart (SSG)',
 		'SvelteKit (SSG)',
 		'Qwik City (SSG)',
@@ -221,6 +226,7 @@ export const sites = [{
 }, {
 	description: "よくアクセスするリンクを設定するウェブサービスの構築を行いました（家庭用）。\nLiquid Glass 風の Masonry レイアウトを採用し、タグでの管理やクリック集計による自動ソートも行います。「航空」をコンセプトにし、DB のテーブル名を「airplanes（リンク）」「airfields（タグ）」「airlines（リレーション）」「takeoff（クリック数）」と定義しました。ログイン方法は、パスキーです。",
 	stacks: [
+		'Solid 2 (SSG)',
 		'SolidStart (SSG)',
 		'Valibot',
 		'ky',
