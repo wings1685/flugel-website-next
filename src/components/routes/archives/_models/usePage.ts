@@ -27,6 +27,8 @@ export const stacks = [
 	'Nano Stores',
 	'urql',
 	'Apollo',
+	'Drizzle',
+	'Prisma',
 	'TypeScript',
 	'Sass (.sass)',
 	'Laravel',
@@ -35,11 +37,26 @@ export const stacks = [
 	'MagicLink',
 	'Vite',
 	'Git',
+	'LLM',
 ] as const;
 
 export const experiments = [{
+	description: "バックエンドが Laravel + GraphQL 構成しか無いので、Drizzle / Prisma を使って、JS フレームワークでの SSR で叩いてみました。\nまた、この SSR を利用し、SSG とのレスポンス時間差の計測を行いました。",
+	stacks: [
+		'Solid 2 (SSR)',
+		'SvelteKit (SSR)',
+		'Qwik City (SSR)',
+		'Next.js (SSR)',
+		'Nuxt (SSR)',
+		'Astro (SSR)',
+		'Drizzle',
+		'Prisma',
+		'TypeScript',
+	]
+}, {
 	description: "ページ数 3 / コンポーネント数 33 のサイトを同一表示・機能で各フレームワークに 3 日間かけてリプレイスしました。\n対象フレームワークは SolidStart / SvelteKit / Qwik City / Next.js / Nuxt / Astro + Solid / Astro + Svelte / Astro + React / Astro + Vue の 9 種類です。",
 	stacks: [
+		'Solid 2 (SSG)',
 		'SolidStart (SSG)',
 		'SvelteKit (SSG)',
 		'Qwik City (SSG)',
@@ -69,7 +86,7 @@ export const experiments = [{
 		'TypeScript',
 	]
 }, {
-	description: "Solid / Svelte / Vue / React において、SSR 環境でも状態汚染の無いグローバルストア機構を、寝床で思いついた翌日に実装しました。\nContext のように包む必要がなく、型推論も効き、Astro でもメタフレームワークでも動作します。",
+	description: "Solid / Svelte / Vue / React において、SSR 環境でも状態汚染の無いグローバルストア機構を、寝床で思いついた翌日に実装しました（意図的に汚染させた状態の防御を確認済み）。\nContext のように包む必要がなく、型推論も効き、Astro でもメタフレームワークでも動作します。",
 	stacks: [
 		'Solid 2 (SSG)',
 		'SolidStart (SSG)',
@@ -128,6 +145,20 @@ export const experiments = [{
 }] as const;
 
 export const sites = [{
+	description: "Gemini API と aibo API を利用し、メッセージ送信や音声認識で aibo 役の Gemini が返答を生成するチャットツールを構築しました（家庭用）。\n1 日の会話を翌日にまとめて別フィールドに保存し、日々のまとめを翌月にまとめて月次のまとめにして、まとめられたレコードを削除することで、レコード数の肥大化と長期記憶の両立を図りました。",
+	stacks: [
+		'Qwik City (SSG)',
+		'Valibot',
+		'ky',
+		'urql',
+		'TypeScript',
+		'Sass',
+		'Laravel',
+		'GraphQL',
+		'Passkey',
+		'LLM',
+	]
+}, {
 	description: "質問に対する回答を押していく診断サイトの構築を行いました。\n似た診断サイトを昨年は SvelteKit で構築しましたが、今年は SolidStart で構築しました。",
 	stacks: [
 		'SolidStart (SSG)',
@@ -200,7 +231,7 @@ export const sites = [{
 }, {
 	description: "「以前に書いたコードを思い出したい」場合に、タグやフリーワードで検索できるような、コード断片の保管庫の構築を行いました（自分用）。\nスマホのみが手元にある環境でも、後でコード登録をできるように URL のみの登録でも可能にして「未登録エリア」に表示するようにしました。「海」をコンセプトにし、DB のテーブル名を「cruisers（コード）」「harbors（タグ）」「searoutes（リレーション）」「sailing（表示数）」と定義しました。ログイン方法は、パスキーです。",
 	stacks: [
-		'SolidStart (SSG)',
+		'Solid 2 (SSG)',
 		'Valibot',
 		'ky',
 		'urql',
@@ -224,10 +255,9 @@ export const sites = [{
 		'Passkey',
 	]
 }, {
-	description: "よくアクセスするリンクを設定するウェブサービスの構築を行いました（家庭用）。\nLiquid Glass 風の Masonry レイアウトを採用し、タグでの管理やクリック集計による自動ソートも行います。「航空」をコンセプトにし、DB のテーブル名を「airplanes（リンク）」「airfields（タグ）」「airlines（リレーション）」「takeoff（クリック数）」と定義しました。ログイン方法は、パスキーです。",
+	description: "よくアクセスするリンクを設定するウェブサービスの構築を行いました（自分用）。\nLiquid Glass 風の Masonry レイアウトを採用し、タグでの管理やクリック集計による自動ソートも行います。「航空」をコンセプトにし、DB のテーブル名を「airplanes（リンク）」「airfields（タグ）」「airlines（リレーション）」「takeoff（クリック数）」と定義しました。ログイン方法は、パスキーです。",
 	stacks: [
 		'Solid 2 (SSG)',
-		'SolidStart (SSG)',
 		'Valibot',
 		'ky',
 		'urql',
