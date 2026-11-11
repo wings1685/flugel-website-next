@@ -1,0 +1,45 @@
+name: Deploy to Website Next ver.
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: deploy-flugel-next
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 1. Node.jsをセットアップ
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '26' # プロジェクトに合わせて変更可（LTS版など）
+          cache: 'npm'
+
+      # 2. パッケージのインストールとビルド実行（ここで dist/ が作られる）
+      - name: Install and Build
+        run: |
+          npm ci
+          npm run build
+
+      # 3. SSH鍵の準備
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/sakura_deploy_key
+          chmod 600 ~/.ssh/sakura_deploy_key
+
+      # 4. 生成された dist/ をさくらサーバーへ転送
+      - name: Sync files
+        run: |
+          rsync -avz --delete \
+          -e "ssh -i ~/.ssh/sakura_deploy_key -o StrictHostKeyChecking=no" \
+          ./out/ ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}:/home/${{ secrets.SERVER_USERNAME }}/www/pre-flight/
