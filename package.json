@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+	"test": "next build && npx playwright test",
+	"test:ui": "next build && npx playwright test --ui"
   },
   "dependencies": {
     "@legendapp/state": "^2.1.15",
@@ -21,6 +23,7 @@
     "valibot": "^1.4.2"
   },
   "devDependencies": {
+    "@playwright/test": "^1.65.0",
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^20",
     "@types/react": "^19",

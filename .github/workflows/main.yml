@@ -25,10 +25,25 @@ jobs:
           cache: 'npm'
 
       # 2. パッケージのインストールとビルド実行（ここで dist/ が作られる）
-      - name: Install and Build
-        run: |
-          npm ci
-          npm run build
+      - name: Install
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npx playwright test
+
+      - name: Upload test report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
 
       # 3. SSH鍵の準備
       - name: Setup SSH

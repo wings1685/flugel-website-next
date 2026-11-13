@@ -6,19 +6,19 @@ export default function Header() {
 	return (
 		<header>
 			<NavCheckbox />
-			<GlassButton as="a" href="/">
+			<GlassButton as="a" href="/" testid="btn-header-home">
 				<p>
 					<span>Home</span>
 				</p>
 				<Icon type="home" />
 			</GlassButton>
-			<GlassButton as="a" href="/archives/">
+			<GlassButton as="a" href="/archives/" testid="btn-header-archives">
 				<p>
 					<span>Archives</span>
 				</p>
 				<Icon type="folder" />
 			</GlassButton>
-			<GlassButton as="a" href="/types/">
+			<GlassButton as="a" href="/types/" testid="btn-header-types">
 				<p>
 					<span>Types</span>
 				</p>

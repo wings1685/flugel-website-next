@@ -15,15 +15,18 @@ type Props = {
 } & ( | (AsLink & {
 	href: string;
 	target?: '_blank';
+	testid?: string;
 }) | (AsDiv & {
 	as: 'div';
 	href?: never;
 	target?: never;
+	testid?: never;
 }));
 
 export default function GlassButton({
 	as = 'a',
 	children,
+	testid,
 	...rest
 }: DeepGuard<Props>) {
 	const { navOpened$ } = useStore('navOpened');
@@ -45,7 +48,7 @@ export default function GlassButton({
 
 	if (as === 'a') {
 		return (
-			<Link href={ rest.href ?? '' } target={ rest.target } onClick={ () => handleClick() } className={ clsx('glass mini is_dark', { active: isActive }, rest.className) }>
+			<Link href={ rest.href ?? '' } target={ rest.target } onClick={ () => handleClick() } className={ clsx('glass mini is_dark', { active: isActive }, rest.className) } data-testid={ testid ?? undefined}>
 				{ children }
 			</Link>
 		)

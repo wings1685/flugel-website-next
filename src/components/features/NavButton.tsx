@@ -23,6 +23,6 @@ export default function NavButton(props: DeepGuard<Props>) {
 		selectedMonth$.set(key);
 	};
 	return (
-		<button onClick={ e => handleClick(e, props.month) } className={ clsx('glass mini is_dark btn_nav', props.className) }>{ props.name }</button>
+		<button onClick={ e => handleClick(e, props.month) } className={ clsx('glass mini is_dark btn_nav', props.className) } data-testid="btn-nav" data-month={ props.month }>{ props.name }</button>
 	)
 }
